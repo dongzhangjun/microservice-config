@@ -1,10 +1,5 @@
-spring: 
-  profiles: 
-    active:
-      - dev
----
-spring: 
-  profiles: dev
+
+
 server:
   port: 7008
 eureka:
@@ -15,16 +10,3 @@ eureka:
     fetch-registry: false  # false 表示自己就是注册中心,我的职责就是维护服务实例,并不需要检索服务
     service-url:
       defaultZone: http://eureka1:7007/eureka/,http://eureka3:7009/eureka/ # 设置与Eureka Server交互的地址查询服务
----
-spring: 
-  profiles: test
-server:
-  port: 7008
-eureka:
-  instance:
-    hostname: eureka2 # eureka服务端实例名称
-  client:
-    register-with-eureka: false # false 表示不想注册中心注册自己
-    fetch-registry: false  # false 表示自己就是注册中心,我的职责就是维护服务实例,并不需要检索服务
-    service-url:
-      defaultZone: http://eureka1:7007/eureka/,http://eureka3:7009/eureka/ 
