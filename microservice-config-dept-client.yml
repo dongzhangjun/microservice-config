@@ -1,0 +1,81 @@
+spring: 
+  profiles: 
+    active:
+      - dev
+---
+
+  
+server:
+  port: 8002
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.dong.cloud.cloud.bean
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml
+spring:
+  profiles: dev
+  application:
+    name: microservice-dept   #显示名称
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloud02?useSSL=false
+    username: root
+    password: root
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka1:7007/eureka/,http://eureka2:7008/eureka/,http://eureka3:7009/eureka/
+  instance:
+    instance-id: microservice-dept-8002  # 显示别名
+    prefer-ip-address: true   # 访问路径可以显示ip
+
+# info 显示信息
+info:
+  app.name: microservice-cloud
+  company.name: www.dong
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
+
+---
+server:
+  port: 8002
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-package: com.dong.cloud.cloud.bean
+  mapper-locations:
+    - classpath:mybatis/mapper/**/*.xml
+spring:
+  profiles: test
+  application:
+    name: microservice-dept   #显示名称
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloud03?useSSL=false
+    username: root
+    password: root
+    dbcp2:
+      min-idle: 5
+      initial-size: 5
+      max-total: 5
+      max-wait-millis: 200
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka1:7007/eureka/,http://eureka2:7008/eureka/,http://eureka3:7009/eureka/
+  instance:
+    instance-id: microservice-dept-8002  # 显示别名
+    prefer-ip-address: true   # 访问路径可以显示ip
+
+# info 显示信息
+info:
+  app.name: microservice-cloud
+  company.name: www.dong
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
